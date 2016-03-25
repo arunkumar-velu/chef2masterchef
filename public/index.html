@@ -3,23 +3,62 @@
 	<title>
 		Chef 2 MasterChef
 	</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="css/style.css">
+
 	<script type="text/javascript" src='js/jquery.min.js'></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
-<body>
-	<div>
-		<p>Search</p>
-		<input type='text' id='c2mc_search'/>
-		<button onclick='onSearch()'>Search</button>
+<body class='application'>
+	<div class='clearfix'>
+		<div class='row'>
+			<div class='col-md-2'>
+				<div class='logo'>
+					<img src="img/avator.jpg" alt="logo" class="img-circle">
+				</div>
+			</div>
+			<div class='col-md-8'>
+				<div class="input-group">
+				  <input type="text" class="form-control" placeholder="Search" aria-describedby="basic-addon2">
+				  <span class="input-group-addon" onclick='onSearch()'><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+				</div>
+			</div>
+			
+			<div class='col-md-2'>
+				<button  class="btn btn-primary" data-toggle="collapse" data-target="#c2mc-post-form" aria-expanded="false" >Add Post</button>
+			</div>
+			
+		</div>
 	</div>
-	<div>
-		<p>Add New Post</p>
-		<input type='text' name='new' id='c2mc_title'>
-		<textarea placeholder='Comments' id='c2mc_comment'></textarea>
-		<button onclick='onCreate()'>Create</button>
+	<div id='c2mc-post-form' class='c2mc-post-form clearfix collapse' >
+		<h5>Add New Post</h5>
+		<div>
+			<div class="form-group">
+				<input type='text' name='new' class='form-control' id='c2mc_title'>
+			</div>
+		</div>
+		<div>
+			<div class="form-group">
+				<textarea placeholder='Comments' class='form-control' id='c2mc_comment'></textarea>
+			</div>
+		</div>
+		<div class='pull-right'>
+			<button onclick='onCreate()' class="btn btn-primary" >Create</button>
+		</div>
 	</div>
-	<div>
-		<p>Post</p>
-		<div id='c2mc_post'></div>
+	<div class='clearfix c2mc-posts'>
+		<h5>Post</h5>
+		
+		<div id='c2mc_post'>
+			
+		</div>
 	</div>
 	<script type="text/javascript" src='js/main.js'></script>
 </body>

@@ -10,6 +10,7 @@ require(__dirname +"/router")(app);
 app.set('port', (process.env.PORT || 8000));
 app.use("/js", express.static(__dirname + '/public/js'));
 app.use("/css", express.static(__dirname + '/public/css'));
+app.use("/img", express.static(__dirname + '/public/img'));
 
 app.get('/', function(req, res){
    res.sendFile(__dirname + '/public/index.html');
