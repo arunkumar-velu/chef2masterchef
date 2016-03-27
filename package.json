@@ -1,16 +1,24 @@
 {
   "name": "chef2masterchef",
   "version": "0.0.1",
-  "author": "",
+  "description": "Chef to master chef app",
+  "main": "app.js",
+  "author": "Arun",
+  "license": "MIT",
+  "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app.js"
+  },
   "dependencies": {
-    "express": "~4.13.4",
+    "body-parser": "~1.15.0",
     "elasticsearch": "~10.1.3",
+    "express": "~4.13.4",
     "jake": "~0.7.4",
-    "uuid": "~2.0.1",
-    "body-parser": "~1.15.0"
+    "mongodb": "^2.1.11",
+    "uuid": "~2.0.1"
   },
   "devDependencies": {},
   "engines": {
-    "node": "0.8.x"
+    "node": "0.10.30"
   }
 }

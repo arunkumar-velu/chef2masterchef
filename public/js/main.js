@@ -6,7 +6,8 @@ $(document).ready(function(){
 	  success: function (data) {
 	  	$('#c2mc_post').html('');
         for(var i=0; i< data.length; i++){
-       		$('#c2mc_post').append(panelTemplate(data[i]._source.title,data[i]._source.comments.comment));
+       		$('#c2mc_post').append(panelTemplate(data[i].title,data[i].comments.comment));
+       		//$('#c2mc_post').append(panelTemplate(data[i]._source.title,data[i]._source.comments.comment));
         }
       },
       error: function (err) {
@@ -41,13 +42,15 @@ function onCreate(){
 		createAt : createdAt,
 		updateAt : createdAt
 	}
+	$('#c2mc-post-form').collapse('hide');
 	$.ajax({
 	  url: "/post",
 	  type: "POST",
 	  dataType: "text/json",
-	  data: dataObj
-	})
-	  .done(function( msg ) {
-	    alert( "Data Saved: " + msg );
-	  });
+	  data: dataObj,
+	  success:function(data){
+	  	alert( "Data Saved: " + msg );
+	    
+	  }
+	});
 }
