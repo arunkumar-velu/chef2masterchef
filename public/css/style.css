@@ -1,9 +1,15 @@
+html{
+  background-color: #ECF3FF;
+}
 body {
   background: url('../img/whitey.png');
 }
 body.application {
   padding-top: 60px;
   padding-bottom: 40px;
+  width: 800px;
+  margin: 0 auto;
+  background-color: rgba(214, 232, 247, 0.4);
 }
 code {
   white-space: pre;
@@ -62,4 +68,15 @@ code {
     float: none;
     margin-top: 10px;
   }
+}
+.logo{
+  height: 100px;
+  padding-left: 30px;
+  margin-top: -29px;
+}
+.img-circle{
+  height: 100px;
+}
+.c2mc-post-form,.c2mc-posts{
+  margin: 20px;
 }
