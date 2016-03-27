@@ -23,7 +23,7 @@ module.exports = function(){
 			};
 			var collection = db.get().collection("posts");
 	 		collection.insert(mlab_object);
-	 		response.send({"success":"true","data": params});
+	 		response.send(mlab_object);
 
 		},
 		//GET
@@ -35,9 +35,26 @@ module.exports = function(){
 			// 	response.send(JSON.stringify(data));	
 			// });
 			var collection = db.get().collection('posts');	
-		  	collection.find().toArray(function(err, docs) {
+		  	collection.find().sort({"createAt":-1}).toArray(function(err, docs) {
 		    	response.send(docs);
 			});
+		},
+		search: function(request, response){
+			var params = request.query.search;
+			var collection = db.get().collection("posts");
+			if(params){
+				collection.find(
+				   { $or: [ { "title": params }, { "comments.comment": params } ] }
+				).sort({"createAt":-1}).toArray(function(err, docs){
+					response.send(docs);
+				});
+			}else{
+				collection.find().sort({"createAt":-1}).toArray(function(err, docs) {
+			    	response.send(docs);
+				});
+			}
+			
+			
 		}
 	}
 }

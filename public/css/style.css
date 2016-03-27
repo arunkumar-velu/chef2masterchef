@@ -80,3 +80,6 @@ code {
 .c2mc-post-form,.c2mc-posts{
   margin: 20px;
 }
+.c2mc-search{
+  cursor: pointer;
+}

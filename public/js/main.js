@@ -3,10 +3,10 @@ $(document).ready(function(){
 	  url: "/post",
 	  type: "GET",
 	  dataType: "json",
-	  success: function (data) {
+	  success: function (result) {
 	  	$('#c2mc_post').html('');
-        for(var i=0; i< data.length; i++){
-       		$('#c2mc_post').append(panelTemplate(data[i].title,data[i].comments.comment));
+        for(var i=0; i< result.length; i++){
+       		$('#c2mc_post').append(panelTemplate(result[i].title,result[i].comments.comment));
        		//$('#c2mc_post').append(panelTemplate(data[i]._source.title,data[i]._source.comments.comment));
         }
       },
@@ -17,7 +17,23 @@ $(document).ready(function(){
 });
 
 function onSearch(){
-			
+	var searchInput = $("#c2mc-search-input").val();
+	$.ajax({
+	  url: "/post/search",
+	  type: "GET",
+	  dataType: "json",
+	  data: {search:searchInput},
+	  success: function (result) {
+	  	$('#c2mc_post').html('');
+        for(var i=0; i< result.length; i++){
+       		$('#c2mc_post').append(panelTemplate(result[i].title,result[i].comments.comment));
+       		//$('#c2mc_post').append(panelTemplate(data[i]._source.title,data[i]._source.comments.comment));
+        }
+      },
+      error: function (err) {
+        console.log(err)
+      }
+	});
 };
 
 function panelTemplate(title, comment){
@@ -32,6 +48,7 @@ function panelTemplate(title, comment){
 };
 
 function onCreate(){
+	var _self = this;
 	var title = $('#c2mc_title').val();
 	var comment = $('#c2mc_comment').val();
 	var createdAt = Date.now(new Date());
@@ -42,15 +59,20 @@ function onCreate(){
 		createAt : createdAt,
 		updateAt : createdAt
 	}
-	$('#c2mc-post-form').collapse('hide');
-	$.ajax({
-	  url: "/post",
-	  type: "POST",
-	  dataType: "text/json",
-	  data: dataObj,
-	  success:function(data){
-	  	alert( "Data Saved: " + msg );
-	    
-	  }
-	});
+	
+	 $.ajax({
+              method: "POST",
+              dataType:"json",
+              contentType: "application/json; charset=utf-8",
+              url: "/post",
+              jsonpCallback : "callback",
+              data: JSON.stringify(dataObj),
+              success: function(result){
+				$('#c2mc-post-form').collapse('hide');
+                $('#c2mc_post').prepend(_self.panelTemplate(result.title,result.comments.comment));
+              },
+              error: function(err){
+              	console.log(err)
+              }
+            });
 }
