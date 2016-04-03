@@ -83,3 +83,6 @@ code {
 .c2mc-search{
   cursor: pointer;
 }
+.panel-heading{
+  height: 35px;
+}

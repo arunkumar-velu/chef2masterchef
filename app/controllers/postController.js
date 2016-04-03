@@ -44,7 +44,22 @@ module.exports = function(){
 			var collection = db.get().collection("posts");
 			if(params){
 				collection.find(
-				   { $or: [ { "title": params }, { "comments.comment": params } ] }
+				   {
+					    "$or": [
+					        {
+					            "title": {
+					                "$regex": params,
+					                "$options": "i"
+					            }
+					        },
+					        {
+					            "comments.comment": {
+					                "$regex": params,
+					                "$options": "i"
+					            }
+					        }
+					    ]
+					}
 				).sort({"createAt":-1}).toArray(function(err, docs){
 					response.send(docs);
 				});
